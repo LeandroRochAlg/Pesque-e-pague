@@ -17,7 +17,7 @@ class Peixe:    #classe peixe
         return self.__preco
     
     def getPeixe(self):
-        return self.__nome + " - " + str(self.__preco)   #retorna o nome e o preço do peixe
+        return f"{self.__nome} - R${self.__preco:.2f}"  #retorna o nome e o preço do peixe
     
 class PeixeComanda: #classe adicional para melhor controle dos peixes na comanda
     def __init__(self, Peixe, peso):    #Construtor da classe PeixeComanda
@@ -34,7 +34,7 @@ class PeixeComanda: #classe adicional para melhor controle dos peixes na comanda
         return self.__peso
     
     def getPeixeComanda(self):
-        return self.__Peixe.nome + " - " + str(self.__peso)   #retorna o nome e o peso do peixe
+        return f"{self.__Peixe.nome} - {self.__peso:.3f} kg"    #retorna o nome e o peso do peixe
     
 class Comanda:
     def __init__(self, listaPeixeComanda):  #Construtor da classe Comanda
@@ -53,9 +53,9 @@ class Comanda:
         for peixeComanda in self.__listaPeixeComanda:   #percorre a lista de peixes da comanda peixe por peixe
             valor = peixeComanda.Peixe.preco * peixeComanda.peso    #calcula o valor cobrado pelo peixe
             total += valor                                          #soma o valor do peixe ao total
-            ret += peixeComanda.getPeixeComanda() + ' - R$' + str(valor) + "\n"
+            ret += peixeComanda.getPeixeComanda() + f" - R${valor:.2f}\n"
 
-        ret += "Total: R$" + str(total)
+        ret += f"Total: R${total:.2f}"
         
         return ret
     
@@ -307,9 +307,9 @@ class CtrlPeixe():  #classe de controle de peixe
                             valorTotalPeixe += peixeComanda.Peixe.preco * peixeComanda.peso   #Adicona ao valor total do peixe
                             pesoTotalPeixe += peixeComanda.peso   #Adiciona ao peso total do peixe
 
-                relatorio += peixe.nome + ' - ' + str(pesoTotalPeixe) + ' kg - R$' + str(valorTotalPeixe) + "\n"    #Adiciona o nome do peixe e o total a string relatorio
+                relatorio += f"{peixe.nome} - {pesoTotalPeixe:.3f} kg - R${valorTotalPeixe:.2f}\n"  #Adiciona o nome do peixe e o total a string relatorio
                 faturamentoTotal += valorTotalPeixe #Adiciona o valor total do peixe ao faturamento total
 
-            relatorio += 'Faturamento total: R$' + str(faturamentoTotal)    #Adiciona o faturamento total a string relatorio
+            relatorio += f"Faturamento total: R${faturamentoTotal:.2f}"#Adiciona o faturamento total a string relatorio
 
             self.limite = LimiteRelatorio(self, relatorio)  #Cria a tela de exibição do relatório
