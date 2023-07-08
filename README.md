@@ -1,25 +1,66 @@
 # Sistema de Pesque-Pague
 
-Este é um sistema simples de pesque-pague desenvolvido em Python utilizando a biblioteca Tkinter. Ele permite cadastrar peixes, consultar informações sobre peixes cadastrados, fechar uma comanda e gerar relatórios de faturamento.
+Este é um sistema de Pesque-Pague desenvolvido em Python utilizando a biblioteca Tkinter. O sistema permite cadastrar peixes, consultar informações sobre os peixes cadastrados, fechar comandas e gerar relatórios de faturamento.
 
-## Requisitos
-- Python 3.x
-- Tkinter (biblioteca padrão do Python)
+## Funcionalidades
+
+- Cadastro de peixes: Permite cadastrar informações sobre os peixes, como nome e preço.
+
+- Consulta de peixes: Permite consultar as informações dos peixes cadastrados.
+
+- Fechamento de comandas: Permite fechar uma comanda, registrando o consumo dos peixes pescados e calculando o valor total a ser pago.
+
+- Geração de relatórios de faturamento: Permite gerar um relatório com o faturamento do pesque-pague.
+
+## Arquivos
+
+- `main.py`: Contém a classe `LimitePrincipal` que representa a janela principal do sistema e a classe `ControlePrincipal` que controla o fluxo do programa.
+
+- `peixe.py`: Contém as classes `Peixe`, `PeixeComanda`, `Comanda`, `LimiteCadastrarPeixe`, `LimiteConsultaPeixe`, `LimiteFechaComanda`, `LimiteRelatorio` e `CtrlPeixe`, que são responsáveis pela definição das entidades e das interfaces do sistema relacionadas aos peixes.
 
 ## Como usar
 
-1. Certifique-se de ter o Python instalado em seu sistema.
-2. Execute o arquivo `main.py` para iniciar o sistema.
+Certifique-se de ter o Python instalado em seu computador. Em seguida, siga as instruções abaixo:
 
-### Menu Peixe
+1. Faça o download dos arquivos do projeto.
 
-- **Cadastrar**: Permite cadastrar um novo peixe no sistema. Ao selecionar essa opção, será exibida uma tela para inserção dos dados do peixe.
-- **Consultar**: Exibe informações sobre os peixes cadastrados. Ao selecionar essa opção, será exibida uma tela com uma lista de peixes e seus respectivos detalhes.
+2. Abra um terminal e navegue até o diretório onde os arquivos estão localizados.
 
-### Menu Comanda
+3. Execute o seguinte comando para iniciar o sistema:
+   ```
+   python main.py
+   ```
 
-- **Fechar**: Permite fechar uma comanda, calculando o valor total a ser pago pelo cliente. Ao selecionar essa opção, será exibida uma tela para inserção dos peixes e quantidades desejados pelo cliente.
+4. O sistema será iniciado e uma janela principal será exibida.
 
-### Menu Relatório
+5. Utilize os menus e botões disponíveis na janela para acessar as diferentes funcionalidades do sistema.
 
-- **Faturamento**: Gera um relatório de faturamento do pesque-pague. Ao selecionar essa opção, será exibido um relatório contendo informações sobre as comandas fechadas e o valor total faturado.
+## Exemplo
+
+Aqui está um exemplo de como o sistema pode ser utilizado:
+
+1. Cadastrar um peixe:
+   - Selecione a opção "Peixe" no menu principal.
+   - Clique em "Cadastrar" no submenu.
+   - Preencha as informações solicitadas sobre o peixe e clique em "Enter".
+
+2. Consultar informações de um peixe:
+   - Selecione a opção "Peixe" no menu principal.
+   - Clique em "Consultar" no submenu.
+   - Será exibida uma lista com os peixes cadastrados. Selecione o peixe desejado para visualizar suas informações.
+
+3. Fechar uma comanda:
+   - Selecione a opção "Comanda" no menu principal.
+   - Clique em "Fecha Comanda".
+   - Escolha o peixe a ser adicionado na comanda e informe o peso.
+   - Clique em "Adiciona Peixe" para adicionar o peixe à comanda.
+   - Quando todos os peixes forem adicionados, clique em "Fecha Comanda" para fechar a comanda e exibir um resumo.
+
+4. Gerar um relatório de faturamento:
+   - Selecione a opção "Relatório" no menu principal.
+   - Clique em "Faturamento".
+   - Será gerado um relatório com as informações de faturamento do pesque-pague.
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para fazer sugestões ou melhorias para este sistema de pesque-pague.
