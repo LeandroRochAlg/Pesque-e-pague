@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox  #Função para mostrar uma janela de aviso
+from tkinter import ttk         #Função para criar uma combobox
 
 class Peixe:    #classe peixe
     def __init__(self, nome, preco):    #Construtor da classe Peixe
@@ -105,7 +106,7 @@ class LimiteCadastrarPeixe(tk.Toplevel): #classe da tela de cadastro de peixe
 class LimiteConsultaPeixe(tk.Toplevel): #classe da tela de exibição da lista de peixes
     def __init__(self, controle, peixes):   #Construtor da classe LimiteConsultaPeixe
         tk.Toplevel.__init__(self)      #Construtor da classe Toplevel (janela)
-        self.geometry('550x100')        #Dimensões da janela
+        self.geometry('250x500')        #Dimensões da janela
         self.title("Consultar Peixes")  #Título da janela
         self.controle = controle        #Controle da janela
 
@@ -133,7 +134,7 @@ class LimiteConsultaPeixe(tk.Toplevel): #classe da tela de exibição da lista d
 class LimiteFechaComanda(tk.Toplevel): #classe da tela de fechamento da comanda
     def __init__(self, controle, peixes): #Construtor da classe LimiteFechaComanda
         tk.Toplevel.__init__(self)      #Construtor da classe Toplevel (janela)
-        self.geometry('550x100')        #Dimensões da janela
+        self.geometry('250x500')        #Dimensões da janela
         self.title("Fechar Comanda")    #Título da janela
         self.controle = controle        #Controle da janela
 
@@ -154,7 +155,10 @@ class LimiteFechaComanda(tk.Toplevel): #classe da tela de fechamento da comanda
 
         #ComboBoxes são usados para criar caixas de seleção
         self.escolhaPeixe = tk.StringVar()                                                  #Cria uma variável para armazenar a escolha do peixe
-        self.comboboxPeixe = tk.OptionMenu(self.framePeixe, width = 15, values = peixes)    #Cria uma combobox com as opções da lista de peixes
+        self.comboboxPeixe = ttk.Combobox(self.framePeixe,              #Frame onde a combobox será empacotada
+                                          width = 15,                   #Largura da combobox
+                                          values = peixes,              #Valores da combobox
+                                          textvariable = self.escolhaPeixe)    #Cria uma combobox com as opções da lista de peixes
         self.comboboxPeixe.pack(side="left")                                                #Empacota a combobox no framePeixe
 
         #Entries são usados para receber entradas de texto
@@ -176,7 +180,7 @@ class LimiteFechaComanda(tk.Toplevel): #classe da tela de fechamento da comanda
 class LimiteRelatorio(tk.Toplevel): #classe da tela de exibição do relatório
     def __init__(self, controle, relatorio): #Construtor da classe LimiteRelatorio
         tk.Toplevel.__init__(self)      #Construtor da classe Toplevel (janela)
-        self.geometry('550x100')        #Dimensões da janela
+        self.geometry('250x500')        #Dimensões da janela
         self.title("Relatório")         #Título da janela
         self.controle = controle        #Controle da janela
 
