@@ -223,7 +223,7 @@ class CtrlPeixe():  #classe de controle de peixe
 
     def enterHandler(self, event):  #Função para adicionar um peixe a lista de peixes
         nome = self.limite.inputNome.get()  #Recebe o nome do peixe
-        preco = self.limite.inputPreco.get()    #Recebe o preço do peixe
+        preco = float(self.limite.inputPreco.get())    #Recebe o preço do peixe
 
         Px = Peixe(nome, preco) #Cria um objeto da classe Peixe
 
@@ -264,7 +264,7 @@ class CtrlPeixe():  #classe de controle de peixe
 
     def adicionaPeixeHandler(self, event):  #Função para adicionar um peixe a comanda
         nomPeixeEscolhido = self.limite.escolhaPeixe.get()   #Recebe o nome peixe escolhido
-        peso = self.limite.inputPeso.get()   #Recebe o peso do peixe
+        peso = float(self.limite.inputPeso.get())   #Recebe o peso do peixe
 
         for peixe in self.listaPeixes:  #Percorre a lista de peixes
             if peixe.nome == nomPeixeEscolhido:   #Verifica se o nome do peixe é igual ao nome do peixe escolhido
