@@ -197,6 +197,6 @@ class LimiteRelatorio(tk.Toplevel): #classe da tela de exibição do relatório
         self.textRelatorio.insert(tk.END, relatorio)                            #Insere o texto com o relatório no textRelatorio
 
         #Buttons são usados para criar botões
-        self.buttonFecha = tk.Button(self.frameButton, text="Concluído")    #Botão Concluído
-        self.buttonFecha.pack(side="left")                                  #Empacota o botão no frameButton
-        self.buttonFecha.bind("<Button>", controle.fechaHandler)            #Vincula o botão a função fechaHandler
+        self.buttonFecha = tk.Button(self.frameButton, text="Concluído")        #Botão Concluído
+        self.buttonFecha.pack(side="left")                                      #Empacota o botão no frameButton
+        self.buttonFecha.bind("<Button>", controle.fechaHandler)                #Vincula o botão a função fechaHandler
