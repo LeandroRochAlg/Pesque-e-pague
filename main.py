@@ -42,7 +42,7 @@ class ControlePrincipal():
     def consultarPeixe(self):
         self.ctrlPeixe.consultarPeixe()
 
-    def fecharComanda(self):
+    def gerarComanda(self):
         self.ctrlPeixe.gerarComanda()
 
     def gerarRelatorio(self):
