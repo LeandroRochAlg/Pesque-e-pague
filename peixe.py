@@ -48,7 +48,7 @@ class Comanda:
     def getComanda(self):   #Retorna a comanda
         total = 0
 
-        ret += "Comanda: \n"
+        ret = "Comanda: \n" #Inicializando a string que será retornada
 
         for peixeComanda in self.__listaPeixeComanda:   #percorre a lista de peixes da comanda peixe por peixe
             valor = peixeComanda.Peixe.preco * peixeComanda.peso    #calcula o valor cobrado pelo peixe
