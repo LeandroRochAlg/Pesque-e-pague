@@ -17,7 +17,7 @@ class Peixe:    #classe peixe
         return self.__preco
     
     def getPeixe(self):
-        return self.__nome + " - " + self.__preco   #retorna o nome e o preço do peixe
+        return self.__nome + " - " + str(self.__preco)   #retorna o nome e o preço do peixe
     
 class PeixeComanda: #classe adicional para melhor controle dos peixes na comanda
     def __init__(self, Peixe, peso):    #Construtor da classe PeixeComanda
@@ -34,7 +34,7 @@ class PeixeComanda: #classe adicional para melhor controle dos peixes na comanda
         return self.__peso
     
     def getPeixeComanda(self):
-        return self.__Peixe.nome + " - " + self.__peso   #retorna o nome e o peso do peixe
+        return self.__Peixe.nome + " - " + str(self.__peso)   #retorna o nome e o peso do peixe
     
 class Comanda:
     def __init__(self, listaPeixeComanda):  #Construtor da classe Comanda
