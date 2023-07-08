@@ -310,6 +310,6 @@ class CtrlPeixe():  #classe de controle de peixe
                 relatorio += f"{peixe.nome} - {pesoTotalPeixe:.3f} kg - R${valorTotalPeixe:.2f}\n"  #Adiciona o nome do peixe e o total a string relatorio
                 faturamentoTotal += valorTotalPeixe #Adiciona o valor total do peixe ao faturamento total
 
-            relatorio += f"Faturamento total: R${faturamentoTotal:.2f}"#Adiciona o faturamento total a string relatorio
+            relatorio += f"Faturamento total: R${faturamentoTotal:.2f}" #Adiciona o faturamento total a string relatorio
 
             self.limite = LimiteRelatorio(self, relatorio)  #Cria a tela de exibição do relatório
