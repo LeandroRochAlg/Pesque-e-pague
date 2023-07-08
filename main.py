@@ -19,7 +19,7 @@ class LimitePrincipal():
         self.menubar.add_cascade(label="Peixe", menu=self.menuPeixe)                                #Menu
 
         # Menu Comanda
-        self.menuComanda.add_command(label="Fechar", command=self.controle.fecharComanda)           #Botão Fechar
+        self.menuComanda.add_command(label="Fechar", command=self.controle.gerarComanda)            #Botão Criar comanda
         self.menubar.add_cascade(label="Comanda", menu=self.menuComanda)                            #Menu
 
         self.menuRelatorio.add_command(label="Faturamento", command=self.controle.gerarRelatorio)   #Botão Faturamento
@@ -43,7 +43,7 @@ class ControlePrincipal():
         self.ctrlPeixe.consultarPeixe()
 
     def fecharComanda(self):
-        self.ctrlPeixe.fecharComanda()
+        self.ctrlPeixe.gerarComanda()
 
     def gerarRelatorio(self):
         self.ctrlPeixe.gerarRelatorio()

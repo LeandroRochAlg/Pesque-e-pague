@@ -200,3 +200,111 @@ class LimiteRelatorio(tk.Toplevel): #classe da tela de exibição do relatório
         self.buttonFecha = tk.Button(self.frameButton, text="Concluído")        #Botão Concluído
         self.buttonFecha.pack(side="left")                                      #Empacota o botão no frameButton
         self.buttonFecha.bind("<Button>", controle.fechaHandler)                #Vincula o botão a função fechaHandler
+
+class CtrlPeixe():  #classe de controle de peixe
+    def __init__(self, controlePrincipal):  #Construtor da classe CtrlPeixe
+        self.ctrlPrincipal = controlePrincipal    #Controle principal
+
+        #Criação de uma lista de peixes
+        self.listaPeixes = []
+
+        #Criação de uma lista de peixes da comanda
+        self.listaPeixesComanda = []    #essa lista é usada para armazenar os peixes adicionados a comanda
+
+        #Criação de uma lista de comandas
+        self.listaComandas = []
+
+    def cadastrarPeixe(self):   #Função para cadastrar um peixe
+        self.limite = LimiteCadastrarPeixe(self)    #Cria a tela de cadastro de peixe
+
+    def enterHandler(self, event):  #Função para adicionar um peixe a lista de peixes
+        nome = self.limite.inputNome.get()  #Recebe o nome do peixe
+        preco = self.limite.inputPreco.get()    #Recebe o preço do peixe
+
+        Px = Peixe(nome, preco) #Cria um objeto da classe Peixe
+
+        self.listaPeixes.append(Px) #Adiciona o peixe a lista de peixes
+
+        self.limite.mostraJanela('Sucesso', 'Peixe cadastrado com sucesso!')   #Mostra uma janela de aviso
+
+        self.clearHandler(event)    #Chama a função clearHandler para limpar os campos de texto
+
+    def clearHandler(self, event):  #Função para limpar os campos de texto
+        self.limite.inputNome.delete(0, len(self.limite.inputNome.get()))  #Limpa o campo de texto do nome
+        self.limite.inputPreco.delete(0, len(self.limite.inputPreco.get()))    #Limpa o campo de texto do preço
+
+    def fechaHandler(self, event):  #Função para fechar a tela em exibição
+        self.limite.destroy()   #Destroi a tela em exibição
+
+    def consultarPeixe(self):   #Função para consultar os peixes cadastrados
+        if len(self.listaPeixes) == 0:  #Verifica se a lista de peixes está vazia
+            self.limite.mostraJanela('Erro', 'Não há peixes cadastrados!')   #Mostra uma janela de aviso
+        else:
+            peixes = ''
+
+            for peixe in self.listaPeixes:  #Percorre a lista de peixes
+                peixes += peixe.getPeixe() + "\n"   #Adiciona o peixe a string peixes
+
+            self.limite = LimiteConsultaPeixe(self, peixes)    #Cria a tela de exibição da lista de peixes
+
+    def gerarComanda(self):    #Função para gerar uma comanda
+        if len(self.listaPeixes) == 0:  #Verifica se a lista de peixes está vazia
+            self.limite.mostraJanela('Erro', 'Não há peixes cadastrados!')   #Mostra uma janela de aviso
+        else:
+            peixes = [] #Lista de nomes de peixes criados para serem usados no combobox
+
+            for peixe in self.listaPeixes:  #Percorre a lista de peixes
+                peixes.append(peixe.nome)   #Adiciona o nome do peixe a lista de peixes
+
+            self.limite = LimiteFechaComanda(self, peixes)  #Cria a tela de fechamento da comanda
+
+    def adicionaPeixeHandler(self, event):  #Função para adicionar um peixe a comanda
+        nomPeixeEscolhido = self.limite.escolhaPeixe.get()   #Recebe o nome peixe escolhido
+        peso = self.limite.inputPeso.get()   #Recebe o peso do peixe
+
+        for peixe in self.listaPeixes:  #Percorre a lista de peixes
+            if peixe.nome == nomPeixeEscolhido:   #Verifica se o nome do peixe é igual ao nome do peixe escolhido
+                PeixeCmd = PeixeComanda(peixe, peso)    #Cria um objeto da classe PeixeComanda
+                self.listaPeixesComanda.append(PeixeCmd)    #Adiciona o peixe a lista de peixes da comanda
+                break
+
+        self.limite.mostraJanela('Sucesso', 'Peixe adicionado com sucesso!')   #Mostra uma janela de aviso
+
+        self.limite.escolhaPeixe.set('')    #Limpa o combobox de peixes
+        self.limite.inputPeso.delete(0, len(self.limite.inputPeso.get()))  #Limpa o campo de texto do peso
+
+    def fechaComandaHandler(self, event):   #Função para fechar a comanda
+        if len(self.listaPeixesComanda) == 0:    #Verifica se a lista de peixes da comanda está vazia
+            self.limite.mostraJanela('Erro', 'Não há peixes na comanda!')   #Mostra uma janela de aviso
+        else:
+            Com = Comanda(self.listaPeixesComanda)  #Cria um objeto da classe Comanda
+            self.listaComandas.append(Com)  #Adiciona a comanda a lista de comandas
+            self.listaPeixesComanda = []    #Limpa a lista de peixes da comanda
+
+            self.limite.mostraJanela('Sucesso', 'Comanda fechada com sucesso!\nResumo:\n' + Com.getComanda())   #Mostra uma janela de aviso com o resumo da comanda
+
+            self.clearHandler(event)    #Chama a função clearHandler para limpar os campos de texto
+
+    def gerarRelatorio(self):   #Função para gerar um relatório
+        if len(self.listaComandas) == 0:    #Verifica se a lista de comandas está vazia
+            self.limite.mostraJanela('Erro', 'Não há comandas fechadas!')   #Mostra uma janela de aviso
+        else:
+            relatorio = ''
+            faturamentoTotal = 0
+
+            for peixe in self.listaPeixes:  #Percorre a lista de peixes
+                valorTotalPeixe = 0
+                pesoTotalPeixe = 0
+
+                for comanda in self.listaComandas:  #Percorre a lista de comandas
+                    for peixeComanda in comanda.listaPeixeComanda:  #Percorre a lista de peixes da comanda
+                        if peixeComanda.Peixe.nome == peixe.nome:   #Verifica se o nome do peixe é igual ao nome do peixe da comanda
+                            valorTotalPeixe += peixeComanda.Peixe.preco * peixeComanda.peso   #Adicona ao valor total do peixe
+                            pesoTotalPeixe += peixeComanda.peso   #Adiciona ao peso total do peixe
+
+                relatorio += peixe.nome + ' - ' + str(pesoTotalPeixe) + ' kg - R$' + str(valorTotalPeixe) + "\n"    #Adiciona o nome do peixe e o total a string relatorio
+                faturamentoTotal += valorTotalPeixe #Adiciona o valor total do peixe ao faturamento total
+
+            relatorio += 'Faturamento total: R$' + str(faturamentoTotal)    #Adiciona o faturamento total a string relatorio
+
+            self.limite = LimiteRelatorio(self, relatorio)  #Cria a tela de exibição do relatório
