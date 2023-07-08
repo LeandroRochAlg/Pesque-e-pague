@@ -106,7 +106,7 @@ class LimiteCadastrarPeixe(tk.Toplevel): #classe da tela de cadastro de peixe
 class LimiteConsultaPeixe(tk.Toplevel): #classe da tela de exibição da lista de peixes
     def __init__(self, controle, peixes):   #Construtor da classe LimiteConsultaPeixe
         tk.Toplevel.__init__(self)      #Construtor da classe Toplevel (janela)
-        self.geometry('250x500')        #Dimensões da janela
+        self.geometry('250x300')        #Dimensões da janela
         self.title("Consultar Peixes")  #Título da janela
         self.controle = controle        #Controle da janela
 
@@ -134,7 +134,7 @@ class LimiteConsultaPeixe(tk.Toplevel): #classe da tela de exibição da lista d
 class LimiteFechaComanda(tk.Toplevel): #classe da tela de fechamento da comanda
     def __init__(self, controle, peixes): #Construtor da classe LimiteFechaComanda
         tk.Toplevel.__init__(self)      #Construtor da classe Toplevel (janela)
-        self.geometry('250x500')        #Dimensões da janela
+        self.geometry('250x300')        #Dimensões da janela
         self.title("Fechar Comanda")    #Título da janela
         self.controle = controle        #Controle da janela
 
