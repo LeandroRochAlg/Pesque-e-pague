@@ -287,7 +287,8 @@ class CtrlPeixe():  #classe de controle de peixe
 
             self.limite.mostraJanela('Sucesso', 'Comanda fechada com sucesso!\nResumo:\n' + Com.getComanda())   #Mostra uma janela de aviso com o resumo da comanda
 
-            self.clearHandler(event)    #Chama a função clearHandler para limpar os campos de texto
+            self.limite.escolhaPeixe.set('')    #Limpa o combobox de peixes
+            self.limite.inputPeso.delete(0, len(self.limite.inputPeso.get()))  #Limpa o campo de texto do peso
 
     def gerarRelatorio(self):   #Função para gerar um relatório
         if len(self.listaComandas) == 0:    #Verifica se a lista de comandas está vazia
